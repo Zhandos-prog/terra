@@ -1,0 +1,129 @@
+{% extends 'src/layout.html.twig' %}
+
+{% block content %}
+    <section id="box-1">
+        <div class="main_slider i-sl">
+            {% for slider in sliders %}
+            <div class="main_slide">
+                <img src="{{ slider.image }}" alt="{{ slider.text }}">
+                <div class="container">
+                    <div class="flex end">
+                        <div class="main_slide_text text-right">
+                            <h2 class="slide_anim">{{ slider.text }}</h2>
+                            <a href="{{ slider.url }}" class="btn red slide_anim2">
+                                <div class="btn_flex">
+                                    <span>Подробнее</span>
+                                    <div class="btn_arr"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <div id="main_bg">
+        <section id="box-2">
+            <div class="container">
+                <div class="section_title_flex flex align-center">
+                    <h2 class="section_title">Каталог</h2>
+                    <a href="/catalog" class="btn red">
+                        <div class="btn_flex">
+                            <span>Весь каталог</span>
+                            <div class="btn_arr"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row cat_row">
+                    {% for category in footer.categories %}
+                        <div class="col-md-4 mb_30 wow fadeInUp" data-wow-delay="0.5s">
+                            <a href="{{ category.url() }}" class="cat_item">
+                                <img src="{{ category.image }}" alt="">
+                                <div class="cat_name">
+                                    <h4>{{ category.name }}</h4>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section id="box-3">
+            <div class="container">
+                <h2 class="section_title">Наши новинки</h2>
+                <div class="row prod_slider arr_unset">
+                    {% for product in products %}
+                    <div class="col-md-4 mb_30">
+                        <a href="#" class="prod_item">
+                            <div class="stickers">
+                                {% if product.novetly %}<div class="sticker new">Новинка</div>{% endif %}
+                                {% if product.bestseller %}<div class="sticker hit">Хит продаж</div>{% endif %}
+                                {% if product.recommendation %}<div class="sticker recom">Рекомендуем</div>{% endif %}
+                            </div>
+                            <div class="prod_img">
+                                <img src="{{ product.image }}" alt="{{ product.name }}">
+                            </div>
+                            <div class="prod_text">
+                                <h4>{{ product.name }}</h4>
+                                <p>{{ product.description }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    <section id="box-4">
+        <div class="container rel">
+            <div class="big_logo">
+                <img src="{{ about.logo }}" alt="big_logo" class="full wow zoomIn" data-wow-delay="1s">
+            </div>
+            <div class="main_about wow fadeInLeft" data-wow-delay="0.5s">
+                <h1>{{ about.name }}</h1>
+                {{ about.anons|raw }}
+                <a href="/about" class="btn red">
+                    <div class="btn_flex">
+                        <span>Подробнее</span>
+                        <div class="btn_arr"></div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    <section id="box-5">
+        <div class="container">
+            <div class="section_title_flex flex align-center">
+                <h2 class="section_title">Новости</h2>
+                <a href="/news" class="btn red">
+                    <div class="btn_flex">
+                        <span>Все новости</span>
+                        <div class="btn_arr"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="row news_row">
+                {% for new in news %}
+                <div class="col-md-4 mb_30 wow fadeInUp" data-wow-delay="0.5s">
+                    <a href="{{ new.url() }}" class="news_item">
+                        <div class="news_top">
+                            <div class="news_img">
+                                <img src="{{ new.image() }}" alt="">
+                            </div>
+                            <div class="news_text">
+                                <h4>{{ new.title }}</h4>
+                                <p>{{ new.preview }}</p>
+                            </div>
+                        </div>
+                        <div class="news_date">
+                            <span>{{ new.dateHtml()|raw }}</span>
+                        </div>
+                    </a>
+                </div>
+                {% endfor  %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

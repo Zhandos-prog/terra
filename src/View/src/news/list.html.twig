@@ -1,0 +1,34 @@
+{% extends 'src/layout.html.twig' %}
+
+{% block content %}
+
+    <div class="page">
+        {% include 'src/common/breadcrumbs.html.twig' %}
+        <div class="container">
+            <h1>Новости</h1>
+
+            <div class="row news_row">
+                {% for newsItem in newsList %}
+                    <div class="col-md-4 mb_30">
+                        <a href="{{ newsItem.url() }}" class="news_item">
+                            <div class="news_top">
+                                <div class="news_img">
+                                    <img src="{{ newsItem.image() }}" alt="">
+                                </div>
+                                <div class="news_text">
+                                    <h4>{{ newsItem.title }}</h4>
+                                    <p>{{ newsItem.preview }}</p>
+                                </div>
+                            </div>
+                            <div class="news_date">
+                                <span>{{ newsItem.dateHtml()|raw }}</span>
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    {{ Translation.of('News list is empty') }}.
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}    

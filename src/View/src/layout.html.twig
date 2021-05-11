@@ -1,0 +1,111 @@
+{% extends 'src/blank.html.twig' %}
+
+{% block body_content %}
+    <header>
+        <div class="search">
+            <div class="search_box">
+                <form action="" method="" class="flex">
+                    <input type="text" class="form-control" placeholder="Поиск по сайту">
+                    <button type="submit"><i class="fa fa-search"></i> </button>
+                    <button type="button" class="search_close"><i class="fa fa-times"></i> </button>
+                </form>
+            </div>
+        </div>
+        <div class="header_container flex align-center rel">
+            <a href="/" class="logo">
+                <img src="{{ logo.src }}" alt="logo" class="full">
+            </a>
+            <div class="header_flex flex align-center">
+                <button class="mob_block menu_toggle menu--show">
+                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-times"></i>
+                </button>
+                <div class="menu">
+                    <ul>
+                        {% for item in header.menu.elements.sortBy('sort') %}
+                            <li {{ item.isActive()?'class="active"':'' }}>
+                                <a href="{{ item.url() }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                        <li class="mob_none">
+                            <a href="#" class="search_btn">
+                                <img src="/img/search.png" alt="search">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header_right flex align-center">
+                {{ header.phones|raw }}
+                {{ social|raw }}
+            </div>
+        </div>
+    </header>
+{% block content %}
+{% endblock %}
+    {% block footer %}
+        <footer>
+            <div class="container">
+                <div class="footer_logo">
+                    <a href="/">
+                        <img src="{{ logo.src }}" alt="logo">
+                    </a>
+                </div>
+                <div class="footer_info">
+                    <div class="row">
+                        <div class="col-md-3 mob_none">
+                            <h4>Информация</h4>
+                            <ul>
+                                {% for item in footer.menu.elements.sortBy('sort') %}
+                                    <li {{ item.isActive()?'class="active"':'' }}>
+                                        <a href="{{ item.url() }}">{{ item.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-3 mob_none">
+                            <h4>Каталог</h4>
+                            <ul>
+                                {% for category in footer.categories %}
+                                    <li {{ category.isActive() ? 'class="active"':'' }}><a href="{{ category.url() }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-3 mob_full">
+                            <h4>Соц. сети</h4>
+                            {{ social|raw }}
+                        </div>
+                        <div class="col-md-3 mob_full">
+                            <h4>Контакты</h4>
+                            <div class="icon_item phone_icon">
+                                {% for phone in contacts.phones|split("\n") %}
+                                    <a href="tel:{{ phone }}">{{ phone }}</a>
+                                {% endfor %}
+                            </div>
+                            <div class="icon_item address_icon">
+                                <p>{{ contacts.address }}</p>
+                            </div>
+                            <div class="icon_item mail_icon">
+                                <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bottom flex align-center">
+                    <div class="copy">{{footer.data[2]['value']}}</div>
+                    <div class="art_flex flex align-center center">
+                        <a href="https://www.artmedia.kz/" target="_blank">{{footer.data[3]['value']}}</a>
+                        <img src="/img/art.png" alt="artmedia">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+    <div class="modal" id="modal-success-msg">
+        <div class="modal__layer"></div>
+        <div class="modal__block">
+            <a href="#" class="close"></a>
+            <h4>Ваше сообщение успешно отправлено</h4>
+        </div>
+    </div>
+{% endblock %}

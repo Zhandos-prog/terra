@@ -1,0 +1,33 @@
+{% extends 'src/layout.html.twig' %}
+
+{% block content %}
+    <div class="page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ul>
+                    <li>
+                        <a href="/">Главная</a>
+                    </li>
+                    <li>{{ breadcrumbs }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <h1>{{ page.name }}</h1>
+            <div class="content-container">
+               {{ page.anons|raw }}
+            </div>
+            <div class="gallery">
+                <div class="row">
+                    {% for photo in page.gallery %}
+                        <div class="{{ loop.first or loop.last ? 'col-md-6': 'col-md-3'}} mb_30 wow fadeInUp" data-wow-delay="0.5s">
+                            <a href="{{ photo.src }}" data-fancybox="group">
+                                <img src="{{ photo.src }}" alt="{{ photo.name }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

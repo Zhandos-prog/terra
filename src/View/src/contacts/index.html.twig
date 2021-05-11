@@ -1,0 +1,73 @@
+{% extends 'src/layout.html.twig' %}
+
+{% block content %}
+    <div class="page contacts_page">
+        <div class="container">
+            {% include 'src/common/breadcrumbs.html.twig' %}
+        </div>
+        <div class="container">
+            <h1>Контакты</h1>
+            <div class="contact_box">
+                <div class="row align-center">
+                    <div class="col-md-3 mob_full">
+                        <div class="icon_item address_icon">
+                            <p>{{ contacts.address }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mob_full">
+                        <div class="icon_item phone_icon">
+                            {% for phone in contacts.phones|split("\n") %}
+                                <a href="tel: +7 (747) 321 01 01">{{ phone }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-3 mob_full">
+                        <div class="icon_item mail_icon">
+                            <a href="mailto: info@soundterra.kz">{{ contacts.email }}</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mob_full">
+                        {{ social|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map">
+            {{ contacts.map|raw }}
+{#            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8aae6af9831030da709d44772c306b271670b0bb49aec916c6eea314c675659a&amp;width=100%&amp;height=100%&amp;lang=ru_RU&amp;scroll=true"></script>#}
+        </div>
+        <div class="container">
+            <h2 class="section_title sm">Напишите нам</h2>
+            <div class="contacts_form">
+                <div class="row">
+                    <div class="col-md-6 mob_full">
+                        <div class="form-group">
+                            <input name="name" type="text" placeholder="Ваше имя *" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input name="phone" type="text" placeholder="+7 (___) ___-__-__ *" class="form-control tel" >
+                        </div>
+                        <div class="form-group">
+                            <input name="email" type="email" placeholder="Электронная почта *" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-md-6 mob_full">
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Текст сообщения" class="form-control" rows="4" ></textarea>
+                        </div>
+                        <div class="form_flex flex start align-start">
+                            <div class="g-recaptcha" data-sitekey="dasd"></div>
+                            <button id="send-message" type="submit" class="btn red open--modal">
+                                <div class="btn_flex">
+                                    <span>Отправить</span>
+                                    <div class="btn_arr"></div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="result text-center"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

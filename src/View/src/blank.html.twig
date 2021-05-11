@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="{% block keywords %}{{ seo.keywords }}{% endblock %}">
+	<meta name="description" content="{% block description %}{{ seo.description }}{% endblock %}">
+	<title>{% block title %}{{ seo.title }}{% endblock %}</title>
+
+	<meta name="HandheldFriendly" content="true">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="x-dns-prefetch-control" content="off">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/default/style.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/default/libs.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css"/>
+	<link rel="icon" type="image/png" href="/img/ico.png">
+	<script>
+		var lang = '{{ lang }}';
+	</script>
+</head>
+<body class="load">
+<div class="loader">
+	<img src="/img/logo.png" alt="logo">
+</div>
+	{% block body_content %}
+
+	{% endblock %}
+	<!-- скрипты js -->
+	{% block other_scripts %}
+		<script src="/js/jQuery.js"></script>
+		<script src="/js/libs.js"></script>
+		<script src="/js/main.js"></script>
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'src/layout.html.twig' %}
+
+{% block content %}
+	<div class="page">
+		{% include 'src/common/breadcrumbs.html.twig' %}
+		<div class="container">
+			<h1>{{ newsItem.title }}</h1>
+			<div class="content-container">
+				{{ newsItem.text|raw }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
